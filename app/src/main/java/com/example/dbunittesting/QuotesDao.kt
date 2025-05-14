@@ -3,13 +3,15 @@ package com.example.dbunittesting
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QuotesDao {
 
-    @Insert
+    @Insert()
     suspend fun insertQuote(quote: Quote)
 
     @Update
@@ -20,6 +22,9 @@ interface QuotesDao {
 
     @Query("SELECT * from quote")
     fun getQuotes() : LiveData<List<Quote>>
+
+    @Query("SELECT * from quote")
+    fun getQuotesForFlow() : Flow<List<Quote>>
 
     @Query("SELECT * from quote where id =:quoteId")
     suspend fun getQuoteById(quoteId: Int):Quote

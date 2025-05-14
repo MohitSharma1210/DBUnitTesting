@@ -55,4 +55,9 @@ dependencies {
 
     testImplementation libs.arch.core
     androidTestImplementation libs.arch.core
+
+    androidTestImplementation libs.turbine
+    implementation libs.coroutine.core
+    implementation libs.coroutine.android
+    testImplementation libs.coroutine.test
 }
